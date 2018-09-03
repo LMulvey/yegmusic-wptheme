@@ -1,0 +1,33 @@
+/*
+Theme Name: YegMusic WP Theme
+Theme URI: https://www.yegmusicofficial.com
+Author: Lee Mulvey
+Author URI: https://www.yegmusicofficial.com/
+Description: Custom template built for YegMusic - built off of Twenty Seventeen template by the Wordpress team.
+Version: 1.0.1
+License: MIT
+License URI: https://opensource.org/licenses/MIT
+Text Domain: yegmusic
+Tags: single column, featured artists, static homepage, static nav, homepage masthead
+
+*/
+
+/*--------------------------------------------------------------
+>>> MEDIA QUERIES ARE LOCATED AT THE BOTTOM OF THEIR RESPECTIVE THEME FILES
+--------------------------------------------------------------*/
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab:700");
+
+@import "./style/_normalize.css";
+@import "./style/_accessibility.css";
+@import "./style/_alignments.css";
+@import "./style/_clearings.css";
+@import "./style/_typography.css";
+@import "./style/_forms.css";
+@import "./style/_lists.css";
+@import "./style/_tables.css";
+@import "./style/_links.css";
+@import "./style/_navigation.css";
+@import "./style/_layout.css";
+@import "./style/_header.css";
+@import "./style/_frontpage.css";
+@import "./style/_content.css";

@@ -1,7 +1,8 @@
 /* global yegmusicScreenReaderText */
 (function($) {
 	// Variables and DOM Caching.
-	var $body = $("body"),
+  var $body = $("body"),
+    $siteHeader = $body.find("header.site-header"),
 		$customHeader = $body.find(".custom-header"),
 		$branding = $customHeader.find(".site-branding"),
 		$navigation = $body.find(".navigation-top"),
@@ -44,7 +45,7 @@
 				}
 
 				if (offsetDiff < fixedNavHeight) {
-					$(window).scrollTo(itemScrollTop - (fixedNavHeight + 50), 0);
+					$(window).scrollTo(itemScrollTop - (fixedNavHeight + 500), 0);
 				}
 			}
 		});
@@ -60,34 +61,24 @@
 	}
 
 	// Make navigation 'stick'.
-	// function adjustScrollClass() {
-	// 	// Make sure we're not on a mobile screen.
-	// 	if ("none" === $menuToggle.css("display")) {
-	// 		// Make sure the nav isn't taller than two rows.
-	// 		if (navIsNotTooTall) {
-	// 			// When there's a custom header image or video, the header offset includes the height of the navigation.
-	// 			if (
-	// 				isFrontPage &&
-	// 				($body.hasClass("has-header-image") ||
-	// 					$body.hasClass("has-header-video"))
-	// 			) {
-	// 				headerOffset = $customHeader.innerHeight() - navigationOuterHeight - 72;
-	// 			} else {
-	// 				headerOffset = $customHeader.innerHeight();
-	// 			}
+	function removeTheHeader() {
+		// Make sure we're not on a mobile screen.
+		if ("none" === $menuToggle.css("display")) {
+				// When there's a custom header image or video, the header offset includes the height of the navigation.
+				if (
+					isFrontPage
+				) {
+					headerOffset = $customHeader.innerHeight();
+				} else {
+					headerOffset = $customHeader.innerHeight();
+				}
 
-	// 			// If the scroll is more than the custom header, set the fixed class.
-	// 			if ($(window).scrollTop() >= headerOffset) {
-	// 				$navigation.addClass(navigationFixedClass);
-	// 			} else {
-	// 				$navigation.removeClass(navigationFixedClass);
-	// 			}
-	// 		} else {
-	// 			// Remove 'fixed' class if nav is taller than two rows.
-	// 			$navigation.removeClass(navigationFixedClass);
-	// 		}
-	// 	}
-	// }
+				// If the scroll is more than the custom header, set the fixed class.
+				if ($(window).scrollTop() >= headerOffset) {
+					setTimeout(() => $siteHeader.remove(), 50);
+				}
+		}
+	}
 
 	// Set margins of branding in header.
 	function adjustHeaderHeight() {
@@ -184,10 +175,10 @@
 
 	// Fire on document ready.
 	$(document).ready(function() {
-		// If navigation menu is present on page, setNavProps and adjustScrollClass.
+		// If navigation menu is present on page, setNavProps and removeTheHeader.
 		if ($navigation.length) {
 			setNavProps();
-			adjustScrollClass();
+			removeTheHeader();
 		}
 
 		// If 'Scroll Down' arrow in present on page, calculate scroll offset and bind an event handler to the click event.
@@ -200,13 +191,13 @@
 			}
 			if (!$navigation.length) {
 				navigationOuterHeight = 0;
-			}
-
+      }
+      console.log('hello', menuTop)
 			$menuScrollDown.click(function(e) {
 				e.preventDefault();
-				$(window).scrollTo("#primary", {
+				$(window).scrollTo("#site-navigation", {
 					duration: 600,
-					offset: { top: menuTop - navigationOuterHeight }
+					offset: { top: menuTop }
 				});
 			});
 		}
@@ -229,14 +220,14 @@
 	if ($navigation.length) {
 		// On scroll, we want to stick/unstick the navigation.
 		$(window).on("scroll", function() {
-			adjustScrollClass();
+			removeTheHeader();
 			adjustHeaderHeight();
 		});
 
 		// Also want to make sure the navigation is where it should be on resize.
 		$(window).resize(function() {
 			setNavProps();
-			setTimeout(adjustScrollClass, 500);
+			setTimeout(removeTheHeader, 500);
 		});
 	}
 

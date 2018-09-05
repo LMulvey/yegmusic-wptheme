@@ -33,19 +33,26 @@ function yegmusic_custom_header_setup() {
 	 *     @type string $flex-height     		Flex support for height of header.
 	 * }
 	 */
+
+  $fp_id = 46;
+  $featured_artist_id = get_field( 'featured_artist_post', $fp_id )->ID;
+  $header_image = get_field( 'featured_photo_1', $featured_artist_id );
+  // echo $full_image;
+
 	add_theme_support( 'custom-header', apply_filters( 'yegmusic_custom_header_args', array(
-		'default-image'      => get_parent_theme_file_uri( '/assets/images/header.jpg' ),
+		'default-image'      => $header_image['sizes']['large'],
 		'width'              => 2000,
 		'height'             => 1200,
 		'flex-height'        => true,
-		'video'              => true,
+    'video'              => true,
+    'uploads'            => false,
 		'wp-head-callback'   => 'yegmusic_header_style',
 	) ) );
 
 	register_default_headers( array(
 		'default-image' => array(
-			'url'           => '%s/assets/images/header.jpg',
-			'thumbnail_url' => '%s/assets/images/header.jpg',
+			'url'           => $header_image['sizes']['large'],
+			'thumbnail_url' => $header_image['sizes']['thumbnail'],
 			'description'   => __( 'Default Header Image', 'yegmusic' ),
 		),
 	) );

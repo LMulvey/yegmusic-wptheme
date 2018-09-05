@@ -14,6 +14,13 @@
 
 get_header(); ?>
 
+<!-- Front Page Setting -->
+<?php
+  $fp_id = 46;
+  $featured_artist_id = get_field( 'featured_artist_post', $fp_id )->ID;
+  
+?>
+
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
 
@@ -27,11 +34,11 @@ get_header(); ?>
 	<div class="panel-content about-us">
 		<div class="wrap"> 
     <?php if (has_post_thumbnail()):
-        $thumbnail = get_field( 'featured_photo', 2 ); ?>
+        $thumbnail = get_field( 'featured_photo_2', $featured_artist_id ); ?>
 			<div class="entry-header">
         <img class="artist-to-watch" src="<?php echo $thumbnail['sizes']['large']; ?>">
         <div class="artist-to-watch-badge">
-          <h2><?php echo the_field( 'full_name', 2 ); ?></h2>
+          <h2><?php echo the_field( 'full_name', $featured_artist_id ); ?></h2>
           <p>Artist to Watch</p>
         </div>
         <img class="artist-to-watch-logo" src="<?php echo get_parent_theme_file_uri( '/assets/images/yegmusic-logo.png' ); ?>">

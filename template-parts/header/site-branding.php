@@ -55,7 +55,7 @@
 		</div><!-- .site-branding-text -->
 
 		<?php if ( ( yegmusic_is_frontpage() || ( is_home() && is_front_page() ) ) ) : ?>
-		<a href="#content"><div class="menu-scroll-down">ENTER SITE<span class="screen-reader-text"><?php _e( 'ENTER SITE', 'yegmusic' ); ?></span></div></a>
+		<a href="#site-navigation"><div class="menu-scroll-down">ENTER SITE<span class="screen-reader-text"><?php _e( 'ENTER SITE', 'yegmusic' ); ?></span></div></a>
 	<?php endif; ?>
 
 	</div><!-- .wrap -->

@@ -16,9 +16,7 @@ get_header(); ?>
 
 <!-- Front Page Setting -->
 <?php
-  $fp_id = 46;
-  $featured_artist_id = get_field( 'featured_artist_post', $fp_id )->ID;
-  
+  $featured_artist_id = get_option( 'yegmusic_featured_artist_post' );
 ?>
 
 <div id="primary" class="content-area">

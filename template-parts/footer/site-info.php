@@ -15,7 +15,7 @@
 		the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>' );
 	}
 	?>
-  <h5>Copyright &copy; <script>new Date().getFullYear()</script> YegMusic</h5>
+  <h5>Copyright &copy; <script>document.write(new Date().getFullYear())</script> YegMusic</h5>
   <div class="social-icons">
           <a href="https://www.facebook.com/theyegmusic/">
             <img src="<?php echo get_parent_theme_file_uri( '/assets/images/facebook.png' ); ?>">

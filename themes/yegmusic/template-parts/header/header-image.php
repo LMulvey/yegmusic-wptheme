@@ -14,11 +14,13 @@
   
 		<div class="custom-header-media">
       <?php
-      $featured_artist_id = $featured_artist_id = get_option( 'yegmusic_featured_artist_post' );
-      $header_image = get_field( 'featured_photo_1', $featured_artist_id )['sizes']['yegmusic-featured-image'];
+        $featured_artist_id = $featured_artist_id = get_option( 'yegmusic_featured_artist_post' );
+        $header_image = get_field( 'featured_photo_1', $featured_artist_id )['sizes']['yegmusic-featured-image'];
+        $full_name = get_field( 'full_name', $featured_artist_id );
+        $data_artist = preg_replace( '/\s/', '', $full_name );
       ?>
       <div id="wp-custom-header" class="wp-custom-header">
-      <img src="<?php echo $header_image; ?>" width="2000" height="1200" alt="Yeg Music">
+      <img id="featured-artist-header" data-artist="<?php echo $data_artist; ?>" src="<?php echo $header_image; ?>" width="2000" height="1200" alt="Yeg Music">
       </div>
       
 			<!-- <?php the_custom_header_markup(); ?> -->

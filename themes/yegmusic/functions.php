@@ -409,8 +409,11 @@ add_action( 'wp_head', 'yegmusic_colors_css_wrap' );
  * Enqueue scripts and styles.
  */
 function yegmusic_scripts() {
-	// Add custom fonts, used in the main stylesheet.
-	wp_enqueue_style( 'yegmusic-fonts', yegmusic_fonts_url(), array(), null );
+  // Bootstrap
+  wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . '/assets/css/bootstrap.min.css', array(), '1.0' );
+
+	// // Add custom fonts, used in the main stylesheet.
+	// wp_enqueue_style( 'yegmusic-fonts', yegmusic_fonts_url(), array(), null );
 
 	// Theme stylesheet.
 	wp_enqueue_style( 'yegmusic-style', get_stylesheet_uri() );
@@ -432,7 +435,9 @@ function yegmusic_scripts() {
 
 	// Load the html5 shiv.
 	wp_enqueue_script( 'html5', get_theme_file_uri( '/assets/js/html5.js' ), array(), '3.7.3' );
-	wp_script_add_data( 'html5', 'conditional', 'lt IE 9' );
+  wp_script_add_data( 'html5', 'conditional', 'lt IE 9' );
+  
+  
 
 	wp_enqueue_script( 'yegmusic-skip-link-focus-fix', get_theme_file_uri( '/assets/js/skip-link-focus-fix.js' ), array(), '1.0', true );
 
@@ -450,6 +455,7 @@ function yegmusic_scripts() {
 	wp_enqueue_script( 'yegmusic-global', get_theme_file_uri( '/assets/js/global.js' ), array( 'jquery' ), '1.0', true );
 
 	wp_enqueue_script( 'jquery-scrollto', get_theme_file_uri( '/assets/js/jquery.scrollTo.js' ), array( 'jquery' ), '2.1.2', true );
+  wp_enqueue_script( 'bootstrap', get_stylesheet_directory_uri() . '/assets/js/bootstrap.min.js', array( 'jquery' ), '1.0' );
 
 	wp_localize_script( 'yegmusic-skip-link-focus-fix', 'yegmusicScreenReaderText', $yegmusic_l10n );
 

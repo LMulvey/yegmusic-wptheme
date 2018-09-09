@@ -26,18 +26,30 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'yegmusic' ); ?></a>
 
-	<header id="masthead" class="site-header" role="banner">
-
-		<?php get_template_part( 'template-parts/header/header', 'image' ); ?>
-
-  </header><!-- #masthead -->
-		<?php if ( has_nav_menu( 'top' ) ) : ?>
-			<div class="navigation-top">
-				<div class="wrap">
-					<?php get_template_part( 'template-parts/navigation/navigation', 'top' ); ?>
-				</div><!-- .wrap -->
-			</div><!-- .navigation-top -->
-		<?php endif; ?>
+  <?php if ( get_option( 'yegmusic_masthead_once_per_session' ) === "true" ) : ?>
+    <script>
+      if (!sessionStorage.getItem('yegmusic-masthead')) {
+        document.write(`
+          <header id="masthead" class="site-header" role="banner">
+          
+          <?php get_template_part( 'template-parts/header/header', 'image' ); ?>
+          
+          </header><!-- #masthead -->
+          `);
+      }
+    </script>
+  <?php else: ?>
+    <header id="masthead" class="site-header" role="banner">
+      <?php get_template_part( 'template-parts/header/header', 'image' ); ?>
+    </header><!-- #masthead -->
+  <?php endif; ?>
+      <?php if ( has_nav_menu( 'top' ) ) : ?>
+      <div class="navigation-top">
+      <div class="wrap">
+      <?php get_template_part( 'template-parts/navigation/navigation', 'top' ); ?>
+      </div><!-- .wrap -->
+      </div><!-- .navigation-top -->
+      <?php endif; ?>
 
 
 	<?php

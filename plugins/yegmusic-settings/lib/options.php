@@ -46,6 +46,88 @@
 
       <br />
 
+      <table class="widefat">
+      <thead>
+        <tr>
+          <th colspan="2" class="row-title">Front Page Settings</th>
+        </tr>
+      </thead>
+      
+      <tr valign="top">
+        <td scope="row">
+          <label for="tablecell">Show header/landing page once per session?</label> 
+        </td>
+        <td>
+          <select name="yegmusic_masthead_once_per_session">
+          <?php $once_per_session = get_option('yegmusic_masthead_once_per_session'); ?>
+            <option value="true"
+            <?php echo ($once_per_session === "true" ) ? 'selected="selected"' : '' ?>>
+              Yes
+            </option>
+            <option value="false"
+            <?php echo ( $once_per_session === "false" ) ? 'selected="selected"' : '' ?>>
+              No
+            </option>
+          </select>
+        </td>
+      </tr>
+
+      <tr valign="top">
+        <td scope="row">
+          <label for="tablecell">About Us Page</label> 
+        </td>
+        <td>
+          <select name="yegmusic_about_us_page">
+          <?php
+            $all_pages = get_pages();
+
+            foreach( $all_pages as $page ) {
+              $id = $page->ID;
+              $title = $page->post_title;
+              ?>
+              <option 
+                value="<?php echo esc_attr( $id ); ?>" 
+                <?php if ( $id == get_option('yegmusic_about_us_page') ) { echo 'selected="selected"'; } ?> 
+              >
+                <?php echo $title; ?>
+              </option>
+              <?php
+            }
+          ?>
+          </select>
+        </td>
+      </tr>
+
+      <tr valign="top">
+        <td scope="row">
+          <label for="tablecell">FAQ Page</label> 
+        </td>
+        <td>
+          <select name="yegmusic_faq_page">
+          <?php
+            $all_pages = get_pages();
+
+            foreach( $all_pages as $page ) {
+              $id = $page->ID;
+              $title = $page->post_title;
+              ?>
+              <option 
+                value="<?php echo esc_attr( $id ); ?>" 
+                <?php if ( $id == get_option('yegmusic_faq_page') ) { echo 'selected="selected"'; } ?> 
+              >
+                <?php echo $title; ?>
+              </option>
+              <?php
+            }
+          ?>
+          </select>
+        </td>
+      </tr>
+
+      </table>
+
+      <br />
+
     <table class="widefat">
       <thead>
         <tr>

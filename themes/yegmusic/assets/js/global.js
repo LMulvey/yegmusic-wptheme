@@ -3,6 +3,7 @@
 	// Variables and DOM Caching.
   var $body = $("body"),
     $siteHeader = $body.find("header.site-header"),
+    $artistHeader = $body.find("#featured-artist-header"),
 		$customHeader = $body.find(".custom-header"),
 		$branding = $customHeader.find(".site-branding"),
 		$navigation = $body.find(".navigation-top"),
@@ -12,7 +13,8 @@
 		$menuScrollDown = $body.find(".menu-scroll-down"),
 		$sidebar = $body.find("#secondary"),
 		$entryContent = $body.find(".entry-content"),
-		$formatQuote = $body.find(".format-quote blockquote"),
+    $formatQuote = $body.find(".format-quote blockquote"),
+    $eventsContainer = $body.find('#facebook-events'),
 		isFrontPage =
 			$body.hasClass("yegmusic-front-page") || $body.hasClass("home blog"),
 		navigationFixedClass = "site-navigation-fixed",
@@ -171,10 +173,55 @@
 		} catch (e) {
 			return false;
 		}
-	}
+  }
+  
+  /**
+   * Set a token for the artist of month
+   * Token format: TIMESTAMP-ArtistName
+   */
+  function setStorageToken() {
+    sessionStorage.setItem('yegmusic-masthead', true);
+  }
+
+  /**
+   * Init Facebook
+   */
+  function initFacebook() {
+    $.ajaxSetup({ cache: true });
+    $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
+      FB.init({
+        appId: '2794218157470492',
+        version: 'v3.1' // or v2.1, v2.2, v2.3, ...
+      });     
+      loadFacebookEvents(FB);
+    });
+  }
+  /**
+   * Load Events?
+   */
+  function loadFacebookEvents(FB) {
+    if ($eventsContainer) {
+      FB.api(
+        '/521649971350024/events',
+        'GET',
+        { access_token: 'EAAntU5yzcxwBAAa0TRY5ZAoBbXhIAhYRRuV3PVAAyTpdLdTWBIOKH7vHHcNaOtDZAHmFiyYNADvD5TRhy1ZCQmz7VTeDQPHUYTuzvDAMf5HpcZByt9etiokBuvI2gpqCf0e0QdjPDeHy267pwSKaTXWMiHcdZAndOmgmDeXHT9k5tiLZA3QhZCbSZCCGtPuQo4tepBZCWhCRASwZDZD' },
+        function(response) {
+          console.log(response)
+          $eventsContainer.text(response);
+        }
+        );
+    }
+  }
 
 	// Fire on document ready.
 	$(document).ready(function() {
+
+    // Set our storage token so we don't show the masthead again
+    setStorageToken();
+
+    // Load events
+    //initFacebook();
+
 		// If navigation menu is present on page, setNavProps and removeTheHeader.
 		if ($navigation.length) {
 			setNavProps();
@@ -192,7 +239,6 @@
 			if (!$navigation.length) {
 				navigationOuterHeight = 0;
       }
-      console.log('hello', menuTop)
 			$menuScrollDown.click(function(e) {
 				e.preventDefault();
 				$(window).scrollTo("#site-navigation", {

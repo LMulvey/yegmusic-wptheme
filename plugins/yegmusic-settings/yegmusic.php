@@ -17,6 +17,9 @@
   }
 
   function yegmusic_register_settings() {
+    /**
+     * Featured Artist Settings
+     */
     register_setting( 'yegmusic-options', 'yegmusic_featured_artist_category', array(
       'type'    => 'number',
       'description'   => 'Post category corresponding to Featured Artists'
@@ -24,6 +27,25 @@
     register_setting( 'yegmusic-options', 'yegmusic_featured_artist_post', array(
       'type'    => 'number',
       'description'   => 'Post/Page ID Corresponding to the Featured Artist'
+    ) );
+
+    /**
+     * Front Page Settings
+     */
+    register_setting( 'yegmusic-options', 'yegmusic_masthead_once_per_session', array(
+      'type' => 'string',
+      'description' => 'Boolean toggle to only show the masthead on the front page once per session',
+      'default' => "false"
+    ) );
+
+    register_setting( 'yegmusic-options', 'yegmusic_about_us_page', array(
+      'type' => 'number',
+      'description' => 'Page ID for About Us Page'
+    ) );
+
+    register_setting( 'yegmusic-options', 'yegmusic_faq_page', array(
+      'type' => 'number',
+      'description' => 'Page ID for FAQ Page'
     ) );
   }
 

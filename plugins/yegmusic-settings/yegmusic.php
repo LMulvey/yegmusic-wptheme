@@ -11,9 +11,10 @@ License: MIT
 add_action('admin_menu', 'yegmusic_options_menu');
 add_action('admin_init', 'yegmusic_register_settings');
 add_action('admin_enqueue_scripts', 'yegmusic_options_enqueue_scripts');
-add_action('init', 'yegmusic_register_post_types');
-add_action('add_meta_boxes', 'yegmusic_add_meta_box');
-add_action('save_post', 'yegmusic_meta_box_save', 1, 2);
+// add_action('init', 'yegmusic_register_post_types');
+// add_action('add_meta_boxes', 'yegmusic_add_meta_box');
+// add_action('save_post', 'yegmusic_meta_box_save', 1, 2);
+
 register_deactivation_hook(__FILE__, 'flush_rewrite_rules');
 register_activation_hook(__FILE__, 'myplugin_flush_rewrites');
 

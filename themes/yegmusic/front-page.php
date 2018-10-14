@@ -54,10 +54,74 @@ if (has_post_thumbnail()):
         </div>
 
       <!-- Events? -->
-      <div class="row">
-        <div class="col-sm" id="facebook-events">
+      <?php 
+        $events = get_posts(array(
+          'category' => get_option('yegmusic_event_category'),
+          'posts_per_page'	=> -1,
+          'orderby' => 'meta_value',
+          'meta_key' => 'event_date',
+          'order' => 'ASC'
+        ));
+        
+        date_default_timezone_set( 'America/Edmonton' );
+
+        $filtered_events = array_filter( $events, function($val) {
+          $today = date('Ymd');
+          return !( get_field( 'event_date', $val->ID ) < $today );
+        } );
+        
+        /* Limit results */
+        $filtered_events = array_slice( $filtered_events, 0, get_option('yegmusic_max_events') );
+      ?>
+
+  </div>
+      <div class="container-fluid my-5" style="background: rgb(51, 51, 51);">
+        <div class="row justify-content-center">
+          <div class="col-auto mt-5">
+            <div class="event-title">
+              <h1>Upcoming Events</h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-10 p-5">
+            <div class="container">
+              <div class="row justify-content-center">
+                <?php foreach ($filtered_events as $event): 
+                  $id = $event->ID;
+                  $event_name = $event->post_title;
+                  $poster = get_field('poster', $id);
+                  $event_date = new DateTime( get_field('event_date', $id) );
+                  $event_link = get_field('event_link', $id);
+
+                  if ( empty($event_link) ) {
+                    $resolvedLink = $event->guid;
+                  } else if ( !strpos($event_link, 'http://') || !strpos($event_link, 'https://') ) {
+                    $resolvedLink = 'https://' . $event_link;
+                  }
+
+                  $ticket_price = get_field('ticket_price', $id);
+                  ?>
+
+                  <div class="col-sm-6" id="facebook-events">
+                    <a href="<?php echo $resolvedLink; ?>">
+                      <div class="event-tile" style="background: url('<?php echo $poster['sizes']['large']; ?>') center top no-repeat; background-size: cover;">
+                        <div class="event-inner">
+                          <h4><?php echo $event_name; ?></h4>
+                          <h6><?php echo $event_date->format('M j, Y'); ?></h6>
+                          <p><?php echo $ticket_price; ?></p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                <?php endforeach; ?>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="container">
 
       <!-- FAQ -->
       <?php

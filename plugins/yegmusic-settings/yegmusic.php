@@ -8,25 +8,16 @@ Author URI: http://www.leemulvey.com/
 License: MIT
  */
 
-add_action('admin_menu', 'yegmusic_options_menu');
-add_action('admin_init', 'yegmusic_register_settings');
-add_action('admin_enqueue_scripts', 'yegmusic_options_enqueue_scripts');
-// add_action('init', 'yegmusic_register_post_types');
-// add_action('add_meta_boxes', 'yegmusic_add_meta_box');
-// add_action('save_post', 'yegmusic_meta_box_save', 1, 2);
-
-register_deactivation_hook(__FILE__, 'flush_rewrite_rules');
-register_activation_hook(__FILE__, 'myplugin_flush_rewrites');
-
-function myplugin_flush_rewrites()
-{
-    // call your CPT registration function here (it should also be hooked into 'init')
-    myplugin_custom_post_types_registration();
-}
+add_action( 'admin_menu', 'yegmusic_options_menu' );
+add_action( 'admin_init', 'yegmusic_register_settings' );
+add_action( 'admin_enqueue_scripts', 'yegmusic_options_enqueue_scripts' );
+// add_action( 'init', 'yegmusic_register_post_types' );
+// add_action( 'add_meta_boxes', 'yegmusic_add_meta_box' );
+// add_action( 'save_post', 'yegmusic_meta_box_save', 1, 2);
 
 function yegmusic_options_enqueue_scripts()
 {
-    wp_enqueue_script('yegmusic_options_js', plugins_url('lib/yegmusic.js', __FILE__), array('jquery'), '1.0');
+    wp_enqueue_script( 'yegmusic_options_js', plugins_url( 'lib/yegmusic.js', __FILE__), array( 'jquery' ), '1.0' );
 }
 
 function yegmusic_add_meta_box()
@@ -45,7 +36,7 @@ function yegmusic_meta_box()
 {
     global $post;
     // Nonce field to validate form request came from current site
-    wp_nonce_field(basename(__FILE__), 'artist_fields');
+    wp_nonce_field(basename(__FILE__), 'artist_fields' );
     // Get the location data if it's already been entered
     $artist_city = get_post_meta($post->ID, 'artist_city', true);
     $cities = array(
@@ -78,7 +69,7 @@ function yegmusic_meta_box()
 function yegmusic_meta_box_save($post_id, $post)
 {
     // Return if the user doesn't have edit permissions.
-    if (!current_user_can('edit_post', $post_id)) {
+    if (!current_user_can( 'edit_post', $post_id)) {
         return $post_id;
     }
     // Verify this came from the our screen and with proper authorization,
@@ -93,7 +84,7 @@ function yegmusic_meta_box_save($post_id, $post)
     // Note, in this example we just have one item, but this is helpful if you have multiple.
     foreach ($artist_meta as $key => $value):
         // Don't store custom data twice
-        if ('revision' === $post->post_type) {
+        if ( 'revision' === $post->post_type) {
             return;
         }
         if (get_post_meta($post_id, $key, false)) {
@@ -112,11 +103,11 @@ function yegmusic_meta_box_save($post_id, $post)
 
 function yegmusic_register_post_types()
 {
-    register_post_type('artist',
+    register_post_type( 'artist',
         array(
             'labels' => array(
-                'name' => __('Artists'),
-                'singular_name' => __('Artist'),
+                'name' => __( 'Artists' ),
+                'singular_name' => __( 'Artist' ),
             ),
             'public' => true,
             'supports' => array(
@@ -124,8 +115,8 @@ function yegmusic_register_post_types()
                 'editor',
             ),
             'has_archive' => true,
-            'rewrite' => array('slug' => 'artists'),
-            'menu_icon' => plugins_url('/images/settings-icon.png', __FILE__),
+            'rewrite' => array( 'slug' => 'artists' ),
+            'menu_icon' => plugins_url( '/images/settings-icon.png', __FILE__),
             'menu_position' => 5,
         ));
     flush_rewrite_rules();
@@ -137,11 +128,11 @@ function yegmusic_register_settings()
     /**
      * Featured Artist Settings
      */
-    register_setting('yegmusic-options', 'yegmusic_featured_artist_category', array(
+    register_setting( 'yegmusic-options', 'yegmusic_featured_artist_category', array(
         'type' => 'number',
         'description' => 'Post category corresponding to Featured Artists',
     ));
-    register_setting('yegmusic-options', 'yegmusic_featured_artist_post', array(
+    register_setting( 'yegmusic-options', 'yegmusic_featured_artist_post', array(
         'type' => 'number',
         'description' => 'Post/Page ID Corresponding to the Featured Artist',
     ));
@@ -149,37 +140,48 @@ function yegmusic_register_settings()
     /**
      * Front Page Settings
      */
-    register_setting('yegmusic-options', 'yegmusic_masthead_once_per_session', array(
+    register_setting( 'yegmusic-options', 'yegmusic_masthead_once_per_session', array(
         'type' => 'string',
         'description' => 'Boolean toggle to only show the masthead on the front page once per session',
         'default' => "false",
     ));
 
-    register_setting('yegmusic-options', 'yegmusic_about_us_page', array(
+    register_setting( 'yegmusic-options', 'yegmusic_about_us_page', array(
         'type' => 'number',
         'description' => 'Page ID for About Us Page',
     ));
 
-    register_setting('yegmusic-options', 'yegmusic_faq_page', array(
+    register_setting( 'yegmusic-options', 'yegmusic_faq_page', array(
         'type' => 'number',
         'description' => 'Page ID for FAQ Page',
     ));
 
-    register_setting('yegmusic-options', 'yegmusic_team_page', array(
+    register_setting( 'yegmusic-options', 'yegmusic_team_page', array(
         'type' => 'number',
         'description' => 'Page ID for the team page parent',
     ));
+
+    register_setting( 'yegmusic-options', 'yegmusic_event_category', array(
+      'type' => 'number',
+      'description' => 'Category ID for the event posts',
+     ));
+
+     register_setting( 'yegmusic-options', 'yegmusic_max_events', array(
+      'type' => 'number',
+      'description' => 'Limit amount of events showing on front page',
+      'default' => '5'
+  ));
 }
 
 function yegmusic_options_menu()
 {
-    add_menu_page('Yeg Music Settings', 'Yeg Music', 'manage_options', 'yegmusic-options', 'yegmusic_options', plugins_url('/images/settings-icon.png', __FILE__));
+    add_menu_page( 'Yeg Music Settings', 'Yeg Music', 'manage_options', 'yegmusic-options', 'yegmusic_options', plugins_url( '/images/settings-icon.png', __FILE__));
 }
 
 function yegmusic_options()
 {
-    if (!current_user_can('manage_options')) {
-        wp_die(__('You do not have sufficient permissions to access this page.'));
+    if (!current_user_can( 'manage_options' )) {
+        wp_die(__( 'You do not have sufficient permissions to access this page.' ));
     }
 
     include 'lib/options.php';

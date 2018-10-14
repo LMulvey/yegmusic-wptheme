@@ -194,6 +194,43 @@ foreach ($all_categories as $category) {
         </td>
       </tr>
 
+       <tr valign="top">
+        <td scope="row">
+            <label for="tablecell">Events - Post Category</label>
+        </td>
+        <td>
+          <select id="yegmusic-featured-artist-category-select" name="yegmusic_event_category">
+          <?php
+            $all_categories = get_categories();
+
+            foreach ($all_categories as $category) {
+                $id = $category->term_id;
+                $name = $category->name;
+                ?>
+                          <option
+                            value="<?=esc_attr($id)?>"
+                            <?php if ($id == get_option('yegmusic_event_category')) {
+                    echo 'selected="selected"';
+                }?>
+              >
+                <?=$name?>
+              </option>
+              <?php
+}
+?>
+          </select>
+        </td>
+      </tr>
+
+      <tr valign="top">
+        <td scope="row">
+            <label for="tablecell">Events - Max Events</label>
+        </td>
+        <td>
+          <input id="yegmusic-yegmusic_max_events" name="yegmusic_max_events" value="<?php echo get_option('yegmusic_max_events'); ?>">
+        </td>
+      </tr>
+
     </table>
 
     <?php submit_button(

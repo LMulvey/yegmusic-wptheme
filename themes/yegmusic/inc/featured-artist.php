@@ -10,7 +10,7 @@
  */
 
 /**
- * Set up the WordPress core custom header feature.
+ * Set up the WordPress core custom he2ader feature.
  *
  * @uses yegmusic_header_style()
  */
@@ -34,10 +34,8 @@ function yegmusic_custom_header_setup() {
 	 * }
 	 */
 
-  $fp_id = 46;
-  $featured_artist_id = get_field( 'featured_artist_post', $fp_id )->ID;
+  $featured_artist_id = get_field( 'featured_artist_post' );
   $header_image = get_field( 'featured_photo_1', $featured_artist_id );
-  // echo $full_image;
 
 	add_theme_support( 'custom-header', apply_filters( 'yegmusic_custom_header_args', array(
 		'default-image'      => $header_image['sizes']['large'],

@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Monoton');
+
+html,
+body {
+  /* Base font size */
+  font-size: 10px;
+}
+
+body {
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-position: center center;
+  -webkit-background-position: center center;
+  -moz-background-position: center center;
+  -o-background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-repeat: no-repeat;
+  -moz-background-repeat: no-repeat;
+  -o-background-repeat: no-repeat;
+}
+
+h1.page-title {
+  font-family: 'Monoton', sans-serif;
+  color: #ffffff;
+  font-size: 4.6rem;
+  font-weight: 400;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.celebration-type {
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  border: 6px solid #ffffff;
+  overflow: hidden;
+  margin: auto;
+}
+
+.celebration-type-image {
+  background-position: top right;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 500ms ease-in-out;
+}
+
+.celebration-type-image:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.celebration-type-title { 
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+.celebration-type-title:hover,
+.celebration-type-link:hover {
+  text-decoration: underline #ffffff;
+}
+
+/* Media Queries */
+@media (min-width: 576px) { 
+  html,
+  body {
+    /* Base font size */
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 768px) { 
+  html,
+  body {
+    /* Base font size */
+    font-size: 14px;
+  }
+
+  h1.page-title {
+    font-size: 5.6rem;
+  }
+}
+
+@media (min-width: 992px) {
+  html,
+  body {
+    /* Base font size */
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  html,
+  body {
+    /* Base font size */
+    font-size: 18px;
+  }
+}

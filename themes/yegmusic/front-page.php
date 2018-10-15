@@ -30,6 +30,11 @@ $about_us = get_post($about_page);
 $content = apply_filters('the_content', $about_us->post_content);
 $title = $about_us->post_title;
 $yegmusic_logo = get_parent_theme_file_uri('/assets/images/yegmusic-logo.png');
+
+$photographer_name = get_field( 'photographer_name', $featured_artist_id );
+$photographer_url = get_field( 'photographer_url', $featured_artist_id );
+$photographer_logo = get_field( 'photographer_logo', $featured_artist_id )['sizes']['thumbnail'];
+
 ?>
 
         <div class="row my-5 align-items-center justify-content-center about-us">
@@ -38,6 +43,15 @@ if (has_post_thumbnail()):
     $thumbnail = get_field('featured_photo_2', $featured_artist_id);
     ?>
 			            <div class="col-sm-5 mb-5">
+                  
+                  <?php if (!empty($photographer_url)): echo '<a href="' . $photographer_url . '">';  endif;?>  
+                  <?php if (!empty($photographer_logo)): ?>
+                    <img class="photo-credit" src="<?php echo $photographer_logo; ?>">
+                  <?php else: ?>
+                    <h6 class="photo-credit">Photo Credit:<br /><?php echo $photographer_name; ?></h6>
+                  <?php endif; ?>
+                  <?php if ($photographer_url): echo '</a>'; endif; ?>  
+
 			              <img class="artist-to-watch" src="<?php echo $thumbnail['sizes']['large']; ?>">
 			                <div class="artist-to-watch-badge">
 			                  <h2><?php echo the_field('full_name', $featured_artist_id); ?></h2>

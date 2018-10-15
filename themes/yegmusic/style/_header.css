@@ -173,7 +173,7 @@ body:not(.title-tagline-hidden) .site-branding-text {
 	z-index: 2;
 }
 
-.has-header-image .custom-header-media img,
+.has-header-image .custom-header-media .featured-artist-header,
 .has-header-video .custom-header-media video,
 .has-header-video .custom-header-media iframe {
 	position: fixed;
@@ -236,7 +236,7 @@ body:not(.title-tagline-hidden) .site-branding-text {
 
 /* For browsers that support 'object-fit' */
 @supports (object-fit: cover) {
-	.has-header-image .custom-header-media img,
+	.has-header-image .custom-header-media .featured-artist-header,
 	.has-header-video .custom-header-media video,
 	.has-header-video .custom-header-media iframe,
 	.has-header-image:not(.yegmusic-front-page):not(.home)

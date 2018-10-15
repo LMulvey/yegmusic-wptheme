@@ -1,4 +1,5 @@
 /* global yegmusicScreenReaderText */
+yegmusicScreenRederText = null;
 (function($) {
 	// Variables and DOM Caching.
   var $body = $("body"),
@@ -99,7 +100,7 @@
 
 	// Set icon for quotes.
 	function setQuotesIcon() {
-		$(yegmusicScreenReaderText.quote).prependTo($formatQuote);
+		// $(yegmusicScreenReaderText.quote).prependTo($formatQuote);
 	}
 
 	// Add 'below-entry-meta' class to elements.
@@ -182,36 +183,54 @@
   function setStorageToken() {
     sessionStorage.setItem('yegmusic-masthead', true);
   }
+ 
+  /**
+   * ScrollTo links from CreativeTim template stuff
+   * http://startbootstrap.com
+   * 
+   */
 
-  /**
-   * Init Facebook
-   */
-  function initFacebook() {
-    $.ajaxSetup({ cache: true });
-    $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
-      FB.init({
-        appId: '2794218157470492',
-        version: 'v3.1' // or v2.1, v2.2, v2.3, ...
-      });     
-      loadFacebookEvents(FB);
-    });
-  }
-  /**
-   * Load Events?
-   */
-  function loadFacebookEvents(FB) {
-    if ($eventsContainer) {
-      FB.api(
-        '/521649971350024/events',
-        'GET',
-        { access_token: 'EAAntU5yzcxwBAAa0TRY5ZAoBbXhIAhYRRuV3PVAAyTpdLdTWBIOKH7vHHcNaOtDZAHmFiyYNADvD5TRhy1ZCQmz7VTeDQPHUYTuzvDAMf5HpcZByt9etiokBuvI2gpqCf0e0QdjPDeHy267pwSKaTXWMiHcdZAndOmgmDeXHT9k5tiLZA3QhZCbSZCCGtPuQo4tepBZCWhCRASwZDZD' },
-        function(response) {
-          console.log(response)
-          $eventsContainer.text(response);
-        }
-        );
+   // Smooth scrolling using jQuery easing
+  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: (target.offset().top - 56)
+        }, 1000, "easeInOutExpo");
+        return false;
+      }
     }
+  });
+
+  // Closes responsive menu when a scroll trigger link is clicked
+  $('.js-scroll-trigger').click(function() {
+    $('.navbar-collapse').collapse('hide');
+  });
+
+  if ($("#mainNav").length) {
+  // Activate scrollspy to add active class to navbar items on scroll
+  $('body').scrollspy({
+    target: '#mainNav',
+    offset: 57
+  });
+
+  // Collapse Navbar
+  var navbarCollapse = function() {
+
+      if ($("#mainNav").offset().top > 100) {
+        $("#mainNav").addClass("navbar-shrink");
+      } else {
+        $("#mainNav").removeClass("navbar-shrink");
+      }
+    };
+    // Collapse now if page is not at top
+    navbarCollapse();
+    // Collapse the navbar when page is scrolled
+    $(window).scroll(navbarCollapse);
   }
+
 
 	// Fire on document ready.
 	$(document).ready(function() {

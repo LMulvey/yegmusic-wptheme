@@ -21,45 +21,52 @@
  ?>
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title><?php echo $page_title; ?></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?php echo get_parent_theme_file_uri( '/assets/css/bootstrap.min.css' ); ?>" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="<?php echo get_parent_theme_file_uri( '/style/celebrations.css' ); ?>" rel="stylesheet">
+    <link href="<?php echo get_parent_theme_file_uri( '/style/celebrations-front-page.css' ); ?>" rel="stylesheet">
 
   </head>
 
-  <body style="background: url('<?php echo $featured_image[0];  ?>') no-repeat center center fixed;">
+  <body style="background-image: url('<?php echo $featured_image[0];  ?>'); background-size: cover;">
 
-    <div class="container">
-      <div class="row mt-5 justify-content-center align-items-center">
-        <div class="col-xs-2">
-          <img style="width: 80%;" src="<?php echo get_parent_theme_file_uri( '/assets/images/yegmusic-logo.png' ); ?>" alt="Yeg Music">
+    <div class="container text-center text-sm-left">
+      <div class="row my-3">
+        <div class="col">
+          <img src="<?php echo get_parent_theme_file_uri( '/assets/images/yegmusic-logo.png' ); ?>" alt="Yeg Music">
         </div>
-        <div class="col-md">
+        <div class="col my-5 my-sm-0 text-center text-sm-left">
           <h1 class="page-title">Yeg Celebrations</h1>
         </div>
       </div>
-      <div class="row my-5 d-flex justify-content-center align-items-center">
+
+      <div class="row justify-content-center text-center text-sm-left">
         <?php 
           foreach($pages as $page):
             $the_image = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ), 'medium' );
+            $the_link = get_page_link( $page->ID );
         ?>
-        <div class="col-sm-4 mx-auto">
-          <div class="celebration-type">
-            <div class="celebration-type-image" style="background-image: url('<?php echo $the_image[0]; ?>');">
+        <div class="col-md-3 mx-auto my-3 my-sm-0">
+          <a class="celebration-type-link" href="<?php echo $the_link; ?>">
+            <div class="celebration-type text-xs-center text-sm-left">
+              <div class="celebration-type-image" style="background-image: url('<?php echo $the_image[0]; ?>');">
+              </div>
             </div>
-          </div>
-          <h3 class="celebration-type-title"><?php echo $page->post_title; ?></h3>
+            <h3 class="celebration-type-title text-center"><?php echo $page->post_title; ?></h3>
+          </a>
         </div>
         <?php endforeach; ?>
-      </div>
-    </div>
-  
+
+      </div> <!-- /row -->
+    </div> <!-- /container -->
     <!-- Bootstrap core JavaScript -->
     <script src="<?php echo get_parent_theme_file_uri( '/assets/js/bootstrap.min.js' ); ?>"></script>
 

@@ -445,8 +445,7 @@ body.colors-dark,
 
 body.colors-dark,
 .colors-dark .site-content-contain {
-  background: url('../images/background.png') center center no-repeat;
-  background-size: cover;
+  background: url('../images/background.jpg');
 }
 
 .colors-dark .navigation-top,

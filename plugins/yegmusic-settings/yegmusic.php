@@ -15,6 +15,48 @@ add_action( 'admin_enqueue_scripts', 'yegmusic_options_enqueue_scripts' );
 // add_action( 'add_meta_boxes', 'yegmusic_add_meta_box' );
 // add_action( 'save_post', 'yegmusic_meta_box_save', 1, 2);
 
+function yegmusic_carousel_shortcode(  ) {
+  $CAROUSEL_MAX_IMAGES = 16;
+  $id = get_the_id();
+  $imageGridArray = [];
+  for ($i = 1; $i <= $CAROUSEL_MAX_IMAGES; $i++) {
+    array_push( $imageGridArray, array(
+      'image' => get_field( 'carousel_image_' . $i, $id )['sizes']['medium'],
+      'url' => get_field( 'carousel_url_' . $i, $id )
+    ) );
+  }
+  
+  ob_start();
+  ?>
+  <div class="container">
+    <div class="row no-gutters justify-content-center">
+      <?php
+        foreach ($imageGridArray as $image):
+          if ( !empty( $image['image'] ) ):
+            ?>
+              <div 
+              class="col-lg-3 col-md-6 image-grid-item"
+              style="background-image: url('<?php echo $image['image']; ?>');"
+              >
+              <?php if ( !empty( $image['url'] ) ): ?>
+                <a href="<?php echo $image['url']; ?>">
+                  <?php if ( !empty( $image['url'] ) ): ?>
+                    </a>
+                  <?php endif; ?>
+              <?php endif; ?>
+              </div>
+            <?php
+          endif;
+        endforeach;
+      ?>
+    </div>
+  </div>
+  <?php
+
+  return ob_get_clean();
+}
+add_shortcode( 'yegmusic-carousel', 'yegmusic_carousel_shortcode' );
+
 function yegmusic_options_enqueue_scripts()
 {
     wp_enqueue_script( 'yegmusic_options_js', plugins_url( 'lib/yegmusic.js', __FILE__), array( 'jquery' ), '1.0' );

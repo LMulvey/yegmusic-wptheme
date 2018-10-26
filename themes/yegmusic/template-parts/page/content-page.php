@@ -17,7 +17,7 @@
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 		<?php yegmusic_edit_link( get_the_ID() ); ?>
 	</header><!-- .entry-header -->
-	<div class="entry-content">
+	<div class="container">
 		<?php
 			the_content();
 

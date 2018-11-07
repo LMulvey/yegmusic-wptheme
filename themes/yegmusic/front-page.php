@@ -34,7 +34,7 @@ $yegmusic_logo = get_parent_theme_file_uri('/assets/images/yegmusic-logo.png');
 $photographer_name = get_field( 'photographer_name', $featured_artist_id );
 $photographer_url = get_field( 'photographer_url', $featured_artist_id );
 $photographer_logo = get_field( 'photographer_logo', $featured_artist_id )['sizes']['thumbnail'];
-
+$the_link = get_page_link( $featured_artist_id );
 ?>
 
         <div class="row my-5 align-items-center justify-content-center about-us">
@@ -52,7 +52,9 @@ if (has_post_thumbnail()):
                   <?php endif; ?>
                   <?php if ($photographer_url): echo '</a>'; endif; ?>  
 
+                    <a href="<?php echo $the_link; ?>">
 			              <img class="artist-to-watch" src="<?php echo $thumbnail['sizes']['large']; ?>">
+                    </a>
 			                <div class="artist-to-watch-badge">
 			                  <h2><?php echo the_field('full_name', $featured_artist_id); ?></h2>
 			                  <p>Artist to Watch</p>
@@ -102,7 +104,8 @@ if (has_post_thumbnail()):
           <div class="col-10 p-5">
             <div class="container">
               <div class="row justify-content-center">
-                <?php foreach ($filtered_events as $event): 
+                <?php 
+                foreach ($filtered_events as $event): 
                   $id = $event->ID;
                   $event_name = $event->post_title;
                   $poster = get_field('poster', $id);

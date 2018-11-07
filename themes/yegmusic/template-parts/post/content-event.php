@@ -29,7 +29,11 @@
   <div class="col-sm-4 m-3 p-3" style="background: rgb(51, 51, 51);">
     <div class="event-header" style="background: url('<?php echo $poster['sizes']['large']; ?>') center top no-repeat; background-size: cover;">
     </div>
-        <h4><?php echo $event_name; ?></h4>
+        <h4>
+          <?php if ( !empty($event_link) ): echo '<a href="' . $event_link . '">'; endif; ?>
+            <?php echo $event_name; ?>
+          <?php if ( !empty($event_link) ): echo '</a>'; endif; ?>
+        </h4>
         <h6><?php echo $event_date->format('M j, Y'); ?></h6>
         <p><?php echo $ticket_price; ?></p>
 

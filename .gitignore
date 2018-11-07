@@ -3,3 +3,5 @@ upgrade/
 plugins/*
 
 !plugins/yegmusic-settings
+
+.secretsfile

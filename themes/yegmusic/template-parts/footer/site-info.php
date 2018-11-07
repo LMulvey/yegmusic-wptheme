@@ -17,10 +17,15 @@
 	?>
   <h5>Copyright &copy; <script>document.write(new Date().getFullYear())</script> YegMusic</h5>
   <div class="social-icons">
+
           <a href="https://www.facebook.com/theyegmusic/">
             <img src="<?php echo get_parent_theme_file_uri( '/assets/images/facebook.png' ); ?>">
           </a>
 
+          <a href="https://www.twitch.tv/yegmusicofficial/">
+            <img src="<?php echo get_parent_theme_file_uri( '/assets/images/twitch.png' ); ?>">
+          </a>
+          
            <a href="https://www.twitter.com/yeg_music/">
             <img src="<?php echo get_parent_theme_file_uri( '/assets/images/twitter.png' ); ?>">
           </a>

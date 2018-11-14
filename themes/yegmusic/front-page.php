@@ -101,7 +101,7 @@ if (has_post_thumbnail()):
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-10 p-5">
+          <div class="col-12 p-5">
             <div class="container">
               <div class="row justify-content-center">
                 <?php 
@@ -114,14 +114,14 @@ if (has_post_thumbnail()):
 
                   if ( empty($event_link) ) {
                     $resolvedLink = $event->guid;
-                  } else if ( !strpos($event_link, 'http://') || !strpos($event_link, 'https://') ) {
-                    $resolvedLink = 'https://' . $event_link;
+                  } else {
+                    $resolvedLink = $event_link;
                   }
 
                   $ticket_price = get_field('ticket_price', $id);
                   ?>
 
-                  <div class="col-sm-6" id="facebook-events">
+                  <div class="col-md-6 col-sm-12" id="facebook-events">
                     <a href="<?php echo $resolvedLink; ?>">
                       <div class="event-tile" style="background: url('<?php echo $poster['sizes']['large']; ?>') center top no-repeat; background-size: cover;">
                         <div class="event-inner">
@@ -148,13 +148,13 @@ $content = get_extended($faq->post_content);
 
 ?>
       <div class="row justify-content-center">
-        <div class="col-10 p-5 faq-head-container">
+        <div class="col-12 p-5 faq-head-container">
           <?php echo $content['main']; ?>
         </div>
       </div>
 
       <div class="row justify-content-center">
-        <div class="col-10 p-5 faq-container">
+        <div class="col-12 p-5 faq-container">
           <?php echo $content['extended']; ?>
         </div>
       </div>

@@ -10,10 +10,12 @@
 
 ?>
 <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Top Menu', 'yegmusic' ); ?>">
-<a href="<?php echo esc_url( home_url( '/' ) ); ?>" alt="Yeg Music">
-  <img class="site-navigation-yeg-logo" src="<?php echo get_parent_theme_file_uri( '/assets/images/yegmusic-logo.png' ); ?>">  
-</a>
-<button class="menu-toggle" aria-controls="top-menu" aria-expanded="false">
+  <div class="site-navigation-yeg-logo">
+    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" alt="Yeg Music">
+      <img class="site-navigation-yeg-logo" src="<?php echo get_parent_theme_file_uri( '/assets/images/yegmusic-logo.png' ); ?>">  
+    </a>
+  </div>
+  <button class="menu-toggle" aria-controls="top-menu" aria-expanded="false">
 		<?php
 		echo yegmusic_get_svg( array( 'icon' => 'bars' ) );
 		echo yegmusic_get_svg( array( 'icon' => 'close' ) );

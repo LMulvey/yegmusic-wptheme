@@ -42,7 +42,7 @@
 
 	initMainNavigation( $( '.main-navigation' ) );
 
-	masthead       = $( '#masthead' );
+	masthead       = $( '.navigation-top' );
 	menuToggle     = masthead.find( '.menu-toggle' );
 	siteNavContain = masthead.find( '.main-navigation' );
 	siteNavigation = masthead.find( '.main-navigation > div > ul' );

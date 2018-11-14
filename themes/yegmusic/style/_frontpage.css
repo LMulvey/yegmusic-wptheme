@@ -150,14 +150,15 @@ img.artist-to-watch {
 
 .artist-to-watch-badge h2 {
   font-weight: 700;
+  font-size: 0.75em;
   color: #fff !important;
 }
 
 .artist-to-watch-badge p {
   font-family: "Slabo 27px", serif;
   font-weight: 400;
-  font-size: 1.2em;
-  line-height: 1.2em;
+  font-size: 0.75em;
+  line-height: 0.75em;
   margin: 0 !important;
 }
 
@@ -284,6 +285,16 @@ img.artist-to-watch {
 	
 }
 @media screen and (min-width: 48em) {
+
+  .artist-to-watch-badge h2 {
+    font-size: 1.4em;
+  }
+
+  .artist-to-watch-badge p {
+    font-size: 1.2em;
+    line-height: 1.2em;
+  }
+
 	/* Front Page */
 
 	.yegmusic-front-page.has-header-image .site-branding,

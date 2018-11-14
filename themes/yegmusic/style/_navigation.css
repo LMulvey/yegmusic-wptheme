@@ -24,14 +24,20 @@
 	color: #767676;
 }
 
-img.site-navigation-yeg-logo {
-	width: 100px;
+.site-navigation-yeg-logo {
+  display: flex;
+  justify-content: center;
+  flex-basis: 100%;
+}
+
+.site-navigation-yeg-logo img {
+  width: 100px;
 }
 
 .main-navigation {
 	clear: both;
 	display: flex;
-	flex-flow: row nowrap;
+	flex-flow: row wrap;
 	justify-content: space-between;
 	align-items: center;
 	padding: 10px;
@@ -108,7 +114,7 @@ img.site-navigation-yeg-logo {
 	border: 0;
 	-webkit-box-shadow: none;
 	box-shadow: none;
-	color: #222;
+	color: white;
 	display: none;
 	font-size: 14px;
 	font-size: 0.875rem;
@@ -286,6 +292,10 @@ img.site-navigation-yeg-logo {
 /** Media Queries **/
 @media screen and (min-width: 48em) {
 	/* Navigation */
+
+  .site-navigation-yeg-logo {
+    flex-basis: initial;
+  }
 
 	.navigation-top {
 		font-size: 14px;

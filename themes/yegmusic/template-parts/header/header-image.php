@@ -9,7 +9,7 @@
  */
 
 ?>
-<?php if ( yegmusic_is_frontpage() ) { ?>
+<?php if ( yegmusic_is_frontpage() && !wp_is_mobile() ) { ?>
   <div class="custom-header">
   
 		<div class="custom-header-media">

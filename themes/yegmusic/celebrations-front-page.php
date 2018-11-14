@@ -11,7 +11,7 @@
  * @version 1.0
  */
 
-  $featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
+  $featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
   $page_title = get_the_title();
   $this_id = get_the_ID();
   $pages  = get_pages( array(
